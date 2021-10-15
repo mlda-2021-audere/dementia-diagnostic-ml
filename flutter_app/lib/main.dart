@@ -1,8 +1,17 @@
 import 'package:flutter/material.dart';
+import 'src/age_input.dart';
 
 void main() {
   runApp(const MyApp());
 }
+
+final routes = [
+  Route(
+    name: 'Age Input',
+    route: 'age_input',
+    builder: (context) => AgeInput(),
+  ),
+];
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
@@ -11,7 +20,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Dementia Diagnostic Test',
       theme: ThemeData(
         // This is the theme of your application.
         //
@@ -23,8 +32,10 @@ class MyApp extends StatelessWidget {
         // Notice that the counter didn't reset back to zero; the application
         // is not restarted.
         primarySwatch: Colors.blue,
+
       ),
       home: const MyHomePage(title: 'Dementia Diagnostic Test'),
+      routes: Map.fromEntries(routes.map((r) => MapEntry(r.route, r.builder))),
     );
   }
 }
@@ -81,19 +92,19 @@ class _MyHomePageState extends State<MyHomePage> {
           // axis because Columns are vertical (the cross axis would be
           // horizontal).
           mainAxisAlignment: MainAxisAlignment.center,
-          children: const <Widget>[
-            Text(
+          children: <Widget>[
+            const Text(
               'Welcome!',
               style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24),
             ),
-            Padding(
+            const Padding(
               padding: EdgeInsets.all(8.0),
               child: Text(
                 'Please ensure you are conducting this test with someone supervising!',
                 textAlign: TextAlign.center,
               ),
             ),
-            ElevatedButton(onPressed: _startTest, child: Text('Start')),
+            ElevatedButton(onPressed: _startTest(context), child: const Text('Start')),
           ],
         ),
       ),
@@ -101,6 +112,14 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 }
 
-_startTest() {
-  // todo: smth here
+_startTest(BuildContext context) {
+  // Navigator.pushNamed(context, 'age_input');
+}
+
+class Route {
+  final String name;
+  final String route;
+  final WidgetBuilder builder;
+
+  const Route({required this.name, required this.route, required this.builder});
 }
