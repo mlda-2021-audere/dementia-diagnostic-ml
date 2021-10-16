@@ -47,8 +47,8 @@ class _ResultsState extends State<Results> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                Text(
-                    'age: $age \ngender: $gender \nyearsEdu: $yearsEdu \n\nZ: $Z, prob: $prob'),
+                // Text(
+                //     'age: $age \ngender: $gender \nyearsEdu: $yearsEdu \n\nZ: $Z, prob: $prob'),
                 const Text('Here are the test results'),
                 Padding(
                     padding: const EdgeInsets.all(8.0),
@@ -62,7 +62,7 @@ class _ResultsState extends State<Results> {
                   child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
-                        Text('Your probability:'),
+                        const Text('Your probability:'),
                         Text(
                           probDisplayText,
                           style: const TextStyle(
