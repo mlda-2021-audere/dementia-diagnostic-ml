@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/src/exam/language5_test.dart';
 import 'package:flutter_app/src/global_store.dart';
+import 'package:flutter_app/src/widgets/radio_points.dart';
 import 'package:provider/provider.dart';
 
 class Language4Test extends StatefulWidget {
@@ -21,32 +22,11 @@ class _Language4TestState extends State<Language4Test> {
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text("Read and do this command:"),
-            const Text("Close your eyes"),
-            const Text('.........'),
-            const Text("1 point if completed command successfully"),
-            const Text('.........'),
-            Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: TextField(
-                  onChanged: (text) {
-                    numCorrect = int.parse(text);
-
-                  },
-                  decoration: const InputDecoration(
-                      border: OutlineInputBorder(), hintText: 'Number correct'),
-                )),
-            ElevatedButton(
-              onPressed: () {
-                WidgetsBinding.instance!.addPostFrameCallback((_) {
-                  Provider.of<GlobalState>(context, listen: false)
-                      .addToScore(numCorrect);
-                  Navigator.pushNamed(context, Language5Test.routeName);
-                });
-              },
-              child: const Text('Next'),
-            )
+          children: const <Widget>[
+            Text("Read and do this command:"),
+            Text("Close your eyes"),
+            Text("1 point if completed command successfully"),
+            RadioPoints(maxPoints: 1, nextRouteName: Language5Test.routeName)
           ],
         ),
       ),

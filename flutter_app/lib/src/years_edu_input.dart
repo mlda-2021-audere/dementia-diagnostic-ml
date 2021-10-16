@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/src/global_store.dart';
 import 'package:flutter_app/src/mental_exam.dart';
+import 'package:numberpicker/numberpicker.dart';
 import 'package:provider/provider.dart';
 
 class YearsEduInput extends StatefulWidget {
@@ -13,8 +14,7 @@ class YearsEduInput extends StatefulWidget {
 }
 
 class _YearsEduInputState extends State<YearsEduInput> {
-
-  late int yearsEducated;
+  int _currentIntValue = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -25,21 +25,18 @@ class _YearsEduInputState extends State<YearsEduInput> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             const Text('Please input the number of years educated here'),
-            Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: TextField(
-                  keyboardType: TextInputType.number,
-                  onChanged: (text) {
-                    yearsEducated = int.parse(text);
-                  },
-                  decoration: const InputDecoration(
-                      border: OutlineInputBorder(),
-                      hintText: 'Years of education'),
-                )),
+            NumberPicker(
+              value: _currentIntValue,
+              minValue: 0,
+              maxValue: 40,
+              step: 1,
+              haptics: true,
+              onChanged: (value) => setState(() => _currentIntValue = value),
+            ),
             ElevatedButton(onPressed: () {
               WidgetsBinding.instance!.addPostFrameCallback((_) {
                 Provider.of<GlobalState>(context, listen: false)
-                    .setYearsEducated(yearsEducated);
+                    .setYearsEducated(_currentIntValue);
                 Navigator.pushNamed(context, MentalExam.routeName);
               });
             }, child: const Text('Next'),)

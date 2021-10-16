@@ -24,9 +24,6 @@ class _MentalExamState extends State<MentalExam> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             const Text('Mini-mental state examination'),
-            const Padding(
-                padding: EdgeInsets.all(8.0),
-                child: Text('............')),
             ElevatedButton(
               onPressed: () {
                 WidgetsBinding.instance!.addPostFrameCallback((_) {

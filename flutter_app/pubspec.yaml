@@ -36,6 +36,7 @@ dependencies:
   cupertino_icons: ^1.0.2
 
   provider: ^6.0.0
+  numberpicker: 2.0.1 # pinned due to this issue: https://github.com/MarcinusX/NumberPicker/issues/106
 
 dev_dependencies:
   flutter_test:

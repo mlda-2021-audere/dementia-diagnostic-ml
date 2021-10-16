@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/src/exam/language3_test.dart';
-import 'package:flutter_app/src/global_store.dart';
-import 'package:provider/provider.dart';
+import 'package:flutter_app/src/widgets/radio_points.dart';
 
 class Language2Test extends StatefulWidget {
   const Language2Test({Key? key}) : super(key: key);
@@ -22,29 +21,10 @@ class _Language2TestState extends State<Language2Test> {
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text("Repeat this phrase 'No ifs, ands, or buts'"),
-            const Text('.........'),
-            const Text("1 point if completed command successfully"),
-            Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: TextField(
-                  onChanged: (text) {
-                    numCorrect = int.parse(text);
-                  },
-                  decoration: const InputDecoration(
-                      border: OutlineInputBorder(), hintText: 'Number correct'),
-                )),
-            ElevatedButton(
-              onPressed: () {
-                WidgetsBinding.instance!.addPostFrameCallback((_) {
-                  Provider.of<GlobalState>(context, listen: false)
-                      .addToScore(numCorrect);
-                  Navigator.pushNamed(context, Language3Test.routeName);
-                });
-              },
-              child: const Text('Next'),
-            )
+          children: const <Widget>[
+            Text("Repeat this phrase 'No ifs, ands, or buts'"),
+            Text("1 point if completed command successfully"),
+            RadioPoints(maxPoints: 1, nextRouteName: Language3Test.routeName)
           ],
         ),
       ),

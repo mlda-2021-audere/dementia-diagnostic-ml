@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/src/exam/language1_test.dart';
 import 'package:flutter_app/src/global_store.dart';
+import 'package:flutter_app/src/widgets/radio_points.dart';
 import 'package:provider/provider.dart';
 
 class RecallTest extends StatefulWidget {
@@ -22,28 +23,10 @@ class _RecallTestState extends State<RecallTest> {
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text('What were the three objects named earlier?'),
-            const Text('.........'),
-            Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: TextField(
-                  onChanged: (text) {
-                    numCorrect = int.parse(text);
-                  },
-                  decoration: const InputDecoration(
-                      border: OutlineInputBorder(), hintText: 'Number correct'),
-                )),
-            ElevatedButton(
-              onPressed: () {
-                WidgetsBinding.instance!.addPostFrameCallback((_) {
-                  Provider.of<GlobalState>(context, listen: false)
-                      .addToScore(numCorrect);
-                  Navigator.pushNamed(context, Language1Test.routeName);
-                });
-              },
-              child: const Text('Next'),
-            )
+          children: const <Widget>[
+            Text('What were the three objects named earlier?'),
+            Text('1 point for each object recalled correctly'),
+            RadioPoints(maxPoints: 3, nextRouteName: Language1Test.routeName)
           ],
         ),
       ),

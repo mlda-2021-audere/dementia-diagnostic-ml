@@ -12,56 +12,55 @@ class GenderInput extends StatefulWidget {
   _GenderInputState createState() => _GenderInputState();
 }
 
-var genders = <String>['male', 'female', 'other', 'prefer not to say'];
-
-String dropdownValue = genders[0];
+enum Genders { male, female }
 
 class _GenderInputState extends State<GenderInput> {
   @override
-  void initState() {
-    super.initState();
-    dropdownValue = genders[0];
-  }
-
-  @override
   Widget build(BuildContext context) {
+    Genders _gender =
+        Provider.of<GlobalState>(context, listen: true).getGender();
     return Scaffold(
       appBar: AppBar(title: const Text('Gender Input')),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            const Text('Please input your gender here'),
+            const Text('Please select your gender'),
             Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: DropdownButton<String>(
-                  value: dropdownValue,
-                  hint: const Text('Gender'),
-                  icon: const Icon(Icons.arrow_downward),
-                  iconSize: 24,
-                  elevation: 16,
-                  style: const TextStyle(color: Colors.deepPurple),
-                  underline: Container(
-                    height: 2,
-                    color: Colors.deepPurpleAccent,
+                padding: const EdgeInsets.fromLTRB(12.0, 0, 12.0, 0),
+                child: Column(children: <Widget>[
+                  ListTile(
+                    title: const Text('Male'),
+                    leading: Radio<Genders>(
+                      value: Genders.male,
+                      groupValue: _gender,
+                      onChanged: (Genders? value) {
+                        setState(() {
+                          Provider.of<GlobalState>(context, listen: false)
+                              .setGender(Genders.male);
+                        });
+                      },
+                    ),
                   ),
-                  onChanged: (String? newValue) {
-                    setState(() {
-                      dropdownValue = newValue!;
-                    });
-                  },
-                  items: genders.map<DropdownMenuItem<String>>((String value) {
-                    return DropdownMenuItem<String>(
-                      value: value,
-                      child: Text(value),
-                    );
-                  }).toList(),
-                )),
+                  ListTile(
+                    title: const Text('Female'),
+                    leading: Radio<Genders>(
+                      value: Genders.female,
+                      groupValue: _gender,
+                      onChanged: (Genders? value) {
+                        setState(() {
+                          Provider.of<GlobalState>(context, listen: false)
+                              .setGender(Genders.female);
+                        });
+                      },
+                    ),
+                  )
+                ])),
             ElevatedButton(
               onPressed: () {
                 WidgetsBinding.instance!.addPostFrameCallback((_) {
                   Provider.of<GlobalState>(context, listen: false)
-                      .setGender(dropdownValue);
+                      .setGender(_gender);
                   Navigator.pushNamed(context, YearsEduInput.routeName);
                 });
               },
