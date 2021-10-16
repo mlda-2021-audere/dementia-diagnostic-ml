@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/src/global_store.dart';
 import 'package:flutter_app/src/years_edu_input.dart';
+import 'package:provider/provider.dart';
 
 class GenderInput extends StatefulWidget {
   const GenderInput({Key? key}) : super(key: key);
@@ -12,11 +14,17 @@ class GenderInput extends StatefulWidget {
 
 var genders = <String>['male', 'female', 'other', 'prefer not to say'];
 
+String dropdownValue = genders[0];
+
 class _GenderInputState extends State<GenderInput> {
   @override
-  Widget build(BuildContext context) {
-    String dropdownValue = genders[0];
+  void initState() {
+    super.initState();
+    dropdownValue = genders[0];
+  }
 
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text('Gender Input')),
       body: Center(
@@ -27,7 +35,7 @@ class _GenderInputState extends State<GenderInput> {
             Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: DropdownButton<String>(
-                  value: dropdownValue ,
+                  value: dropdownValue,
                   hint: const Text('Gender'),
                   icon: const Icon(Icons.arrow_downward),
                   iconSize: 24,
@@ -52,6 +60,8 @@ class _GenderInputState extends State<GenderInput> {
             ElevatedButton(
               onPressed: () {
                 WidgetsBinding.instance!.addPostFrameCallback((_) {
+                  Provider.of<GlobalState>(context, listen: false)
+                      .setGender(dropdownValue);
                   Navigator.pushNamed(context, YearsEduInput.routeName);
                 });
               },

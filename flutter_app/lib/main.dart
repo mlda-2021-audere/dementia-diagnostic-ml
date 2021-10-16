@@ -14,8 +14,10 @@ import 'package:flutter_app/src/exam/recall_test.dart';
 import 'package:flutter_app/src/exam/registration_test.dart';
 import 'package:flutter_app/src/exam/results.dart';
 import 'package:flutter_app/src/gender_input.dart';
+import 'package:flutter_app/src/global_store.dart';
 import 'package:flutter_app/src/mental_exam.dart';
 import 'package:flutter_app/src/years_edu_input.dart';
+import 'package:provider/provider.dart';
 
 void main() {
   runApp(const MyApp());
@@ -31,9 +33,12 @@ class MyApp extends StatelessWidget {
       GenderInput.routeName: (BuildContext context) => const GenderInput(),
       YearsEduInput.routeName: (BuildContext context) => const YearsEduInput(),
       MentalExam.routeName: (BuildContext context) => const MentalExam(),
-      OrientationTest.routeName: (BuildContext context) => const OrientationTest(),
-      RegistrationTest.routeName: (BuildContext context) => const RegistrationTest(),
-      CalculationTest.routeName: (BuildContext context) => const CalculationTest(),
+      OrientationTest.routeName: (BuildContext context) =>
+          const OrientationTest(),
+      RegistrationTest.routeName: (BuildContext context) =>
+          const RegistrationTest(),
+      CalculationTest.routeName: (BuildContext context) =>
+          const CalculationTest(),
       RecallTest.routeName: (BuildContext context) => const RecallTest(),
       Language1Test.routeName: (BuildContext context) => const Language1Test(),
       Language2Test.routeName: (BuildContext context) => const Language2Test(),
@@ -41,17 +46,21 @@ class MyApp extends StatelessWidget {
       Language4Test.routeName: (BuildContext context) => const Language4Test(),
       Language5Test.routeName: (BuildContext context) => const Language5Test(),
       Results.routeName: (BuildContext context) => const Results(),
-
-
     };
-    return MaterialApp(
-      title: 'Dementia Diagnostic Test',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: const MyHomePage(title: 'Dementia Diagnostic Test'),
-      routes: routes,
-    );
+    return MultiProvider(
+        providers: [
+          ChangeNotifierProvider.value(
+            value: GlobalState(),
+          ),
+        ],
+        child: MaterialApp(
+          title: 'Dementia Diagnostic Test',
+          theme: ThemeData(
+            primarySwatch: Colors.blue,
+          ),
+          home: const MyHomePage(title: 'Dementia Diagnostic Test'),
+          routes: routes,
+        ));
   }
 }
 

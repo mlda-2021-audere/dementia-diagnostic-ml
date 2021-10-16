@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/src/exam/language2_test.dart';
+import 'package:flutter_app/src/global_store.dart';
+import 'package:provider/provider.dart';
 
 class Language1Test extends StatefulWidget {
   const Language1Test({Key? key}) : super(key: key);
@@ -11,6 +13,8 @@ class Language1Test extends StatefulWidget {
 }
 
 class _Language1TestState extends State<Language1Test> {
+  int numCorrect = 0;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -26,14 +30,16 @@ class _Language1TestState extends State<Language1Test> {
                 child: TextField(
                   onChanged: (text) {
                     print('First text field: $text');
-                    // todo: update global app state
+                    numCorrect = int.parse(text);
                   },
                   decoration: const InputDecoration(
-                      border: OutlineInputBorder(), hintText: 'Age'),
+                      border: OutlineInputBorder(), hintText: 'Number correct'),
                 )),
             ElevatedButton(
               onPressed: () {
                 WidgetsBinding.instance!.addPostFrameCallback((_) {
+                  Provider.of<GlobalState>(context, listen: false)
+                      .addToScore(numCorrect);
                   Navigator.pushNamed(context, Language2Test.routeName);
                 });
               },

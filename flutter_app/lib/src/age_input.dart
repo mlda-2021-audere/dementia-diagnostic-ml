@@ -1,4 +1,7 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_app/src/global_store.dart';
+import 'package:provider/provider.dart';
 import 'package:flutter_app/src/gender_input.dart';
 
 class AgeInput extends StatefulWidget {
@@ -11,6 +14,7 @@ class AgeInput extends StatefulWidget {
 }
 
 class _AgeInputState extends State<AgeInput> {
+  late int age;
 
   @override
   Widget build(BuildContext context) {
@@ -24,20 +28,22 @@ class _AgeInputState extends State<AgeInput> {
             Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: TextField(
+                  keyboardType: TextInputType.number,
                   onChanged: (text) {
-                    print('First text field: $text');
-                    // todo: update global app state
+                    age = int.parse(text);
                   },
                   decoration: const InputDecoration(
-                      border: OutlineInputBorder(),
-                      hintText: 'Age'),
+                      border: OutlineInputBorder(), hintText: 'Age'),
                 )),
-            ElevatedButton( onPressed: () {
-              WidgetsBinding.instance!.addPostFrameCallback((_) {
-                // todo: add provider setter method here
-                Navigator.pushNamed(context, GenderInput.routeName);
-              });
-            }, child: const Text('Next'),)
+            ElevatedButton(
+              onPressed: () {
+                WidgetsBinding.instance!.addPostFrameCallback((_) {
+                  Provider.of<GlobalState>(context, listen: false).setAge(age);
+                  Navigator.pushNamed(context, GenderInput.routeName);
+                });
+              },
+              child: const Text('Next'),
+            )
           ],
         ),
       ),

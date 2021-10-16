@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/src/exam/registration_test.dart';
+import 'package:flutter_app/src/global_store.dart';
+import 'package:provider/provider.dart';
 
 class OrientationTest extends StatefulWidget {
   const OrientationTest({Key? key}) : super(key: key);
@@ -13,6 +15,7 @@ class OrientationTest extends StatefulWidget {
 var genders = <String>['male', 'female', 'other', 'prefer not to say'];
 
 class _OrientationTestState extends State<OrientationTest> {
+  int numCorrect = 0;
   @override
   Widget build(BuildContext context) {
     String dropdownValue = genders[0];
@@ -28,18 +31,20 @@ class _OrientationTestState extends State<OrientationTest> {
             const Text('What country are you in?'),
             const Text('How many questions did they get correct?'),
             Padding(
-                padding: EdgeInsets.all(8.0),
+                padding: const EdgeInsets.all(8.0),
                 child: TextField(
                   onChanged: (text) {
-                    // todo: update global app state
+                    numCorrect = int.parse(text);
                   },
                   decoration: const InputDecoration(
                       border: OutlineInputBorder(),
-                      hintText: 'Age'),
+                      hintText: 'Number correct'),
                 )),
             ElevatedButton(
               onPressed: () {
                 WidgetsBinding.instance!.addPostFrameCallback((_) {
+                  Provider.of<GlobalState>(context, listen: false)
+                      .addToScore(numCorrect);
                   Navigator.pushNamed(context, RegistrationTest.routeName);
                 });
               },

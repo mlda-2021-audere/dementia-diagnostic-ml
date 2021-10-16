@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/src/exam/language1_test.dart';
+import 'package:flutter_app/src/global_store.dart';
+import 'package:provider/provider.dart';
 
 class RecallTest extends StatefulWidget {
   const RecallTest({Key? key}) : super(key: key);
@@ -11,10 +13,12 @@ class RecallTest extends StatefulWidget {
 }
 
 class _RecallTestState extends State<RecallTest> {
+  int numCorrect = 0;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Registration test')),
+      appBar: AppBar(title: const Text('Recall test')),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -26,14 +30,16 @@ class _RecallTestState extends State<RecallTest> {
                 child: TextField(
                   onChanged: (text) {
                     print('First text field: $text');
-                    // todo: update global app state
+                    numCorrect = int.parse(text);
                   },
                   decoration: const InputDecoration(
-                      border: OutlineInputBorder(), hintText: 'Age'),
+                      border: OutlineInputBorder(), hintText: 'Number correct'),
                 )),
             ElevatedButton(
               onPressed: () {
                 WidgetsBinding.instance!.addPostFrameCallback((_) {
+                  Provider.of<GlobalState>(context, listen: false)
+                      .addToScore(numCorrect);
                   Navigator.pushNamed(context, Language1Test.routeName);
                 });
               },

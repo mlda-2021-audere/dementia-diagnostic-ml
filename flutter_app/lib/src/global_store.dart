@@ -3,7 +3,8 @@ import 'package:flutter/material.dart';
 class GlobalState extends ChangeNotifier {
   String _name = '';
   String _gender = ''; // todo: change this to enum
-  int _yearsEducated = 0;
+  late int _age;
+  late int _yearsEducated;
   int _score = 0;
 
   // name methods
@@ -25,6 +26,20 @@ class GlobalState extends ChangeNotifier {
   void setGender(String gender) {
     _gender = gender;
     notifyListeners();
+    // DEBUG
+    print('gender set to $_gender');
+  }
+
+  // age methods
+  int getAge() {
+    return _age;
+  }
+
+  void setAge(int age) {
+    _age = age;
+    notifyListeners();
+    // DEBUG
+    print('age set to $_age');
   }
 
   // yearsEducated methods
@@ -35,6 +50,9 @@ class GlobalState extends ChangeNotifier {
 
   void setYearsEducated(int yearsEdu) {
     _yearsEducated = yearsEdu;
+    notifyListeners();
+    // DEBUG
+    print('yearsEducated set to $_yearsEducated');
   }
 
   // score methods
@@ -49,6 +67,8 @@ class GlobalState extends ChangeNotifier {
   }
 
   void addToScore(int score) {
-    _score += score;
+    _score = _score + score;
+    // DEBUG
+    print('score set to $_score');
   }
 }
