@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/src/gender_input.dart';
 
 class GlobalState extends ChangeNotifier {
   String _name = '';
-  String _gender = 'male'; // todo: change this to enum
+  Genders _gender = Genders.male; // todo: change this to enum
   int _age = 0;
   int _yearsEducated = 0;
   int _score = 0;
@@ -11,7 +12,7 @@ class GlobalState extends ChangeNotifier {
 
   void resetState () {
     _name = '';
-    _gender = 'male';
+    _gender = Genders.male;
     _age = 0;
     _yearsEducated = 0;
     _score = 0;
@@ -29,11 +30,11 @@ class GlobalState extends ChangeNotifier {
   }
 
   // gender methods
-  String getGender() {
+  Genders getGender() {
     return _gender;
   }
 
-  void setGender(String gender) {
+  void setGender(Genders gender) {
     _gender = gender;
     notifyListeners();
     // DEBUG

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/src/exam/language2_test.dart';
 import 'package:flutter_app/src/global_store.dart';
+import 'package:flutter_app/src/widgets/radio_points.dart';
 import 'package:provider/provider.dart';
 
 class Language1Test extends StatefulWidget {
@@ -22,28 +23,10 @@ class _Language1TestState extends State<Language1Test> {
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text('Name any two objects'),
-            const Text('.........'),
-            Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: TextField(
-                  onChanged: (text) {
-                    numCorrect = int.parse(text);
-                  },
-                  decoration: const InputDecoration(
-                      border: OutlineInputBorder(), hintText: 'Number correct'),
-                )),
-            ElevatedButton(
-              onPressed: () {
-                WidgetsBinding.instance!.addPostFrameCallback((_) {
-                  Provider.of<GlobalState>(context, listen: false)
-                      .addToScore(numCorrect);
-                  Navigator.pushNamed(context, Language2Test.routeName);
-                });
-              },
-              child: const Text('Next'),
-            )
+          children: const <Widget>[
+            Text('Name any two random objects'),
+            Text('1 point for each correct answer'),
+            RadioPoints(maxPoints: 2, nextRouteName: Language2Test.routeName)
           ],
         ),
       ),

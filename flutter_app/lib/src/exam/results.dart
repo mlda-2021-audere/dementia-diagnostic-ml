@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_app/main.dart';
+import 'package:flutter_app/src/gender_input.dart';
 import 'package:flutter_app/src/global_store.dart';
 import 'package:provider/provider.dart';
 
@@ -18,13 +19,13 @@ class _ResultsState extends State<Results> {
   @override
   Widget build(BuildContext context) {
     int score = Provider.of<GlobalState>(context).getScore();
-    String gender = Provider.of<GlobalState>(context).getGender();
+    Genders gender = Provider.of<GlobalState>(context).getGender();
     int age = Provider.of<GlobalState>(context).getAge();
     int yearsEdu = Provider.of<GlobalState>(context).getYearsEducated();
 
-    int finalScore = 30;
+    int finalScore = 29;
 
-    int G = gender == 'male' ? 1 : 0;
+    int G = gender == Genders.male ? 1 : 0;
 
     double Z = -38.56704 -
         0.06486 * G +

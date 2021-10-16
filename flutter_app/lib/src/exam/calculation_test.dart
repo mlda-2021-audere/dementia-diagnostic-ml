@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/src/exam/recall_test.dart';
 import 'package:flutter_app/src/global_store.dart';
+import 'package:flutter_app/src/widgets/radio_points.dart';
 import 'package:provider/provider.dart';
 
 class CalculationTest extends StatefulWidget {
@@ -16,6 +17,10 @@ class CalculationTest extends StatefulWidget {
 
 class _CalculationTestState extends State<CalculationTest> {
   String num1 = _rangedRng().toString();
+  String num2 = _rangedRng().toString();
+  String num3 = _rangedRng().toString();
+  String num4 = _rangedRng().toString();
+  String num5 = _rangedRng().toString();
 
   @override
   Widget build(BuildContext context) {
@@ -27,26 +32,12 @@ class _CalculationTestState extends State<CalculationTest> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Text('What is 100 - $num1 ?'),
-            const Text('.........'),
-            Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: TextField(
-                  onChanged: (text) {
-                    numCorrect = int.parse(text);
-                  },
-                  decoration: const InputDecoration(
-                      border: OutlineInputBorder(), hintText: 'Number correct'),
-                )),
-            ElevatedButton(
-              onPressed: () {
-                WidgetsBinding.instance!.addPostFrameCallback((_) {
-                  Provider.of<GlobalState>(context, listen: false)
-                      .addToScore(numCorrect);
-                  Navigator.pushNamed(context, RecallTest.routeName);
-                });
-              },
-              child: const Text('Next'),
-            )
+            Text('What is 90 - $num2 ?'),
+            Text('What is 80 - $num3 ?'),
+            Text('What is 70 - $num4 ?'),
+            Text('What is 60 - $num5 ?'),
+            const Text('1 point for each correct answer'),
+            const RadioPoints(maxPoints: 5, nextRouteName: RecallTest.routeName)
           ],
         ),
       ),

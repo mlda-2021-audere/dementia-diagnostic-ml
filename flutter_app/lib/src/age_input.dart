@@ -1,5 +1,9 @@
+//packages
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:numberpicker/numberpicker.dart';
+
+// routes
 import 'package:flutter_app/src/global_store.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_app/src/gender_input.dart';
@@ -14,7 +18,8 @@ class AgeInput extends StatefulWidget {
 }
 
 class _AgeInputState extends State<AgeInput> {
-  late int age;
+  late int age; // todo: remove
+  int _currentIntValue = 60;
 
   @override
   Widget build(BuildContext context) {
@@ -25,20 +30,19 @@ class _AgeInputState extends State<AgeInput> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             const Text('Please input your age here'),
-            Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: TextField(
-                  keyboardType: TextInputType.number,
-                  onChanged: (text) {
-                    age = int.parse(text);
-                  },
-                  decoration: const InputDecoration(
-                      border: OutlineInputBorder(), hintText: 'Age'),
-                )),
+            NumberPicker(
+              value: _currentIntValue,
+              minValue: 60,
+              maxValue: 98,
+              step: 1,
+              haptics: true,
+              onChanged: (value) => setState(() => _currentIntValue = value),
+            ),
+            const SizedBox(height: 32),
             ElevatedButton(
               onPressed: () {
                 WidgetsBinding.instance!.addPostFrameCallback((_) {
-                  Provider.of<GlobalState>(context, listen: false).setAge(age);
+                  Provider.of<GlobalState>(context, listen: false).setAge(_currentIntValue);
                   Navigator.pushNamed(context, GenderInput.routeName);
                 });
               },
