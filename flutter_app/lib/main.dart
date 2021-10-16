@@ -1,4 +1,7 @@
+// import packages
 import 'package:flutter/material.dart';
+
+// import routes
 import 'package:flutter_app/src/age_input.dart';
 import 'package:flutter_app/src/exam/calculation_test.dart';
 import 'package:flutter_app/src/exam/language1_test.dart';
@@ -9,6 +12,7 @@ import 'package:flutter_app/src/exam/language5_test.dart';
 import 'package:flutter_app/src/exam/orientation_test.dart';
 import 'package:flutter_app/src/exam/recall_test.dart';
 import 'package:flutter_app/src/exam/registration_test.dart';
+import 'package:flutter_app/src/exam/results.dart';
 import 'package:flutter_app/src/gender_input.dart';
 import 'package:flutter_app/src/mental_exam.dart';
 import 'package:flutter_app/src/years_edu_input.dart';
@@ -53,6 +57,8 @@ class MyApp extends StatelessWidget {
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({Key? key, required this.title}) : super(key: key);
+
+  static const String routeName = "/";
 
   final String title;
 
