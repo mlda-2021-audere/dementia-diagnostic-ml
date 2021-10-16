@@ -14,7 +14,7 @@ class Language2Test extends StatefulWidget {
 
 class _Language2TestState extends State<Language2Test> {
   int numCorrect = 0;
-  
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -30,7 +30,6 @@ class _Language2TestState extends State<Language2Test> {
                 padding: const EdgeInsets.all(8.0),
                 child: TextField(
                   onChanged: (text) {
-                    print('First text field: $text');
                     numCorrect = int.parse(text);
                   },
                   decoration: const InputDecoration(

@@ -2,10 +2,20 @@ import 'package:flutter/material.dart';
 
 class GlobalState extends ChangeNotifier {
   String _name = '';
-  String _gender = ''; // todo: change this to enum
-  late int _age;
-  late int _yearsEducated;
+  String _gender = 'male'; // todo: change this to enum
+  int _age = 0;
+  int _yearsEducated = 0;
   int _score = 0;
+
+  // common methods
+
+  void resetState () {
+    _name = '';
+    _gender = 'male';
+    _age = 0;
+    _yearsEducated = 0;
+    _score = 0;
+  }
 
   // name methods
 
@@ -68,6 +78,7 @@ class GlobalState extends ChangeNotifier {
 
   void addToScore(int score) {
     _score = _score + score;
+    notifyListeners();
     // DEBUG
     print('score set to $_score');
   }

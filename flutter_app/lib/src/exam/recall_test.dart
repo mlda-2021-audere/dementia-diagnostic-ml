@@ -29,7 +29,6 @@ class _RecallTestState extends State<RecallTest> {
                 padding: const EdgeInsets.all(8.0),
                 child: TextField(
                   onChanged: (text) {
-                    print('First text field: $text');
                     numCorrect = int.parse(text);
                   },
                   decoration: const InputDecoration(

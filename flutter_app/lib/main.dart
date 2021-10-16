@@ -78,36 +78,39 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title),
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text(
-              'Welcome!',
-              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24),
+    return WillPopScope(
+        onWillPop: () async => false,
+        child: Scaffold(
+          appBar: AppBar(
+            title: Text(widget.title),
+            automaticallyImplyLeading: false,
+          ),
+          body: Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                const Text(
+                  'Welcome!',
+                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24),
+                ),
+                const Padding(
+                  padding: EdgeInsets.all(8.0),
+                  child: Text(
+                    'Please ensure you are conducting this test with someone supervising!',
+                    textAlign: TextAlign.center,
+                  ),
+                ),
+                ElevatedButton(
+                    onPressed: () {
+                      WidgetsBinding.instance!.addPostFrameCallback((_) {
+                        Navigator.pushNamed(context, AgeInput.routeName);
+                      });
+                    },
+                    child: const Text('Start')),
+              ],
             ),
-            const Padding(
-              padding: EdgeInsets.all(8.0),
-              child: Text(
-                'Please ensure you are conducting this test with someone supervising!',
-                textAlign: TextAlign.center,
-              ),
-            ),
-            ElevatedButton(
-                onPressed: () {
-                  WidgetsBinding.instance!.addPostFrameCallback((_) {
-                    Navigator.pushNamed(context, AgeInput.routeName);
-                  });
-                },
-                child: const Text('Start')),
-          ],
-        ),
-      ),
-    );
+          ),
+        ));
   }
 }
 

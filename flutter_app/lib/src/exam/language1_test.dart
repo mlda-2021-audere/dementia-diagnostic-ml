@@ -29,7 +29,6 @@ class _Language1TestState extends State<Language1Test> {
                 padding: const EdgeInsets.all(8.0),
                 child: TextField(
                   onChanged: (text) {
-                    print('First text field: $text');
                     numCorrect = int.parse(text);
                   },
                   decoration: const InputDecoration(

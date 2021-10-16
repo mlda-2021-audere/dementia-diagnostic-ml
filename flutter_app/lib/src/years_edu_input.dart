@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/src/gender_input.dart';
 import 'package:flutter_app/src/global_store.dart';
 import 'package:flutter_app/src/mental_exam.dart';
 import 'package:provider/provider.dart';
@@ -15,7 +14,7 @@ class YearsEduInput extends StatefulWidget {
 
 class _YearsEduInputState extends State<YearsEduInput> {
 
-  int yearsEducated = 0;
+  late int yearsEducated;
 
   @override
   Widget build(BuildContext context) {

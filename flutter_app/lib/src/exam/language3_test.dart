@@ -32,7 +32,6 @@ class _Language3TestState extends State<Language3Test> {
                 padding: const EdgeInsets.all(8.0),
                 child: TextField(
                   onChanged: (text) {
-                    print('First text field: $text');
                     numCorrect = int.parse(text);
                   },
                   decoration: const InputDecoration(

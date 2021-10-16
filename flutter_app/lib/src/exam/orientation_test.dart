@@ -32,6 +32,7 @@ class _OrientationTestState extends State<OrientationTest> {
             const Text('How many questions did they get correct?'),
             Padding(
                 padding: const EdgeInsets.all(8.0),
+                // todo: replace with circle buttons
                 child: TextField(
                   onChanged: (text) {
                     numCorrect = int.parse(text);

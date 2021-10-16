@@ -30,9 +30,7 @@ class _Language5TestState extends State<Language5Test> {
                 padding: const EdgeInsets.all(8.0),
                 child: TextField(
                   onChanged: (text) {
-                    print('First text field: $text');
                     numCorrect = int.parse(text);
-
                   },
                   decoration: const InputDecoration(
                       border: OutlineInputBorder(), hintText: 'Number correct'),
