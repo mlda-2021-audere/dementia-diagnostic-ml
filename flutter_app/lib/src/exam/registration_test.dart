@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/src/gender_input.dart';
+import 'package:flutter_app/src/exam/calculation_test.dart';
 
 class RegistrationTest extends StatefulWidget {
   const RegistrationTest({Key? key}) : super(key: key);
@@ -19,10 +19,11 @@ class _RegistrationTestState extends State<RegistrationTest> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            const Text('What year is it'),
-            const Text("What is today's date"),
-            const Text('What is the time now'),
-            const Text('.........'),
+            const Text('Repeat these three objects:'),
+            const Text('Apple'),
+            const Text('Table'),
+            const Text('Coin'),
+            const Text('1 point for each object repeated thrice'),
             Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: TextField(
@@ -36,7 +37,7 @@ class _RegistrationTestState extends State<RegistrationTest> {
             ElevatedButton(
               onPressed: () {
                 WidgetsBinding.instance!.addPostFrameCallback((_) {
-                  Navigator.pushNamed(context, GenderInput.routeName);
+                  Navigator.pushNamed(context, CalculationTest.routeName);
                 });
               },
               child: const Text('Next'),

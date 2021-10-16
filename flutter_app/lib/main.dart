@@ -1,5 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/src/age_input.dart';
+import 'package:flutter_app/src/exam/calculation_test.dart';
+import 'package:flutter_app/src/exam/language1_test.dart';
+import 'package:flutter_app/src/exam/language2_test.dart';
+import 'package:flutter_app/src/exam/language3_test.dart';
+import 'package:flutter_app/src/exam/language4_test.dart';
+import 'package:flutter_app/src/exam/language5_test.dart';
+import 'package:flutter_app/src/exam/orientation_test.dart';
+import 'package:flutter_app/src/exam/recall_test.dart';
 import 'package:flutter_app/src/exam/registration_test.dart';
 import 'package:flutter_app/src/gender_input.dart';
 import 'package:flutter_app/src/mental_exam.dart';
@@ -19,7 +27,18 @@ class MyApp extends StatelessWidget {
       GenderInput.routeName: (BuildContext context) => const GenderInput(),
       YearsEduInput.routeName: (BuildContext context) => const YearsEduInput(),
       MentalExam.routeName: (BuildContext context) => const MentalExam(),
+      OrientationTest.routeName: (BuildContext context) => const OrientationTest(),
       RegistrationTest.routeName: (BuildContext context) => const RegistrationTest(),
+      CalculationTest.routeName: (BuildContext context) => const CalculationTest(),
+      RecallTest.routeName: (BuildContext context) => const RecallTest(),
+      Language1Test.routeName: (BuildContext context) => const Language1Test(),
+      Language2Test.routeName: (BuildContext context) => const Language2Test(),
+      Language3Test.routeName: (BuildContext context) => const Language3Test(),
+      Language4Test.routeName: (BuildContext context) => const Language4Test(),
+      Language5Test.routeName: (BuildContext context) => const Language5Test(),
+      Results.routeName: (BuildContext context) => const Results(),
+
+
     };
     return MaterialApp(
       title: 'Dementia Diagnostic Test',

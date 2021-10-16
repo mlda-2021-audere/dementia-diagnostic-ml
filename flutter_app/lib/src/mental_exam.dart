@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/src/exam/registration_test.dart';
-import 'package:flutter_app/src/years_edu_input.dart';
+import 'package:flutter_app/src/exam/orientation_test.dart';
 
 class MentalExam extends StatefulWidget {
   const MentalExam({Key? key}) : super(key: key);
@@ -31,7 +30,7 @@ class _MentalExamState extends State<MentalExam> {
             ElevatedButton(
               onPressed: () {
                 WidgetsBinding.instance!.addPostFrameCallback((_) {
-                  Navigator.pushNamed(context, RegistrationTest.routeName);
+                  Navigator.pushNamed(context, OrientationTest.routeName);
                 });
               },
               child: const Text('Next'),
