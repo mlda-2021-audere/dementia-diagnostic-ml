@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/src/gender_input.dart';
+import 'package:flutter_app/src/mental_exam.dart';
 
-class AgeInput extends StatefulWidget {
-  const AgeInput({Key? key}) : super(key: key);
+class YearsEduInput extends StatefulWidget {
+  const YearsEduInput({Key? key}) : super(key: key);
 
-  static const String routeName = "/age_input";
+  static const String routeName = "/years_edu_input";
 
   @override
-  _AgeInputState createState() => _AgeInputState();
+  _YearsEduInputState createState() => _YearsEduInputState();
 }
 
-class _AgeInputState extends State<AgeInput> {
+class _YearsEduInputState extends State<YearsEduInput> {
 
   @override
   Widget build(BuildContext context) {
@@ -25,16 +26,15 @@ class _AgeInputState extends State<AgeInput> {
                 padding: const EdgeInsets.all(8.0),
                 child: TextField(
                   onChanged: (text) {
-                    print('First text field: $text');
                     // todo: update global app state
                   },
                   decoration: const InputDecoration(
                       border: OutlineInputBorder(),
-                      hintText: 'Age'),
+                      hintText: 'Years of education'),
                 )),
             ElevatedButton( onPressed: () {
               WidgetsBinding.instance!.addPostFrameCallback((_) {
-                Navigator.pushNamed(context, GenderInput.routeName);
+                Navigator.pushNamed(context, MentalExam.routeName);
               });
             }, child: const Text('Next'),)
           ],
